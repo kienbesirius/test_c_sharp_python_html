@@ -4,8 +4,8 @@
 ![.NET Version](https://img.shields.io/badge/.NET-8.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-yellow)
 
-## Project Structure
-```
+## Project Structure (Completed)
+```markdown
 source/
 │
 ├── database/
@@ -43,8 +43,19 @@ Please first follow the folder structure in the Overview.
 
 Then follow powersell cmd below to construct a C# Project rightly!
 
-### Create folder & files follow the structure
-- 
+### Create folder & files follow the following structure
+```markdown
+source/
+│
+├── database/
+│
+├── templates/                     # HTML and Python template files
+│   └── index.html                 # Example HTML file
+│
+├── index.py                       # Example Python script
+│
+└── README.md                      # Project documentation (this file)
+```
 ### Create DB
 ```
 -- test MariaDB -- 
@@ -67,7 +78,7 @@ VALUES ('John Doe', '0123456789', 'Male'),
 SELECT * FROM Users;
 ```
 ### Install Python library
-```
+```bash
 pip install Flask
 ```
 
