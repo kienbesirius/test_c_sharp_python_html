@@ -1,0 +1,133 @@
+<style>
+  /* Thiết lập cho toàn bộ form */
+  #userForm {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Tiêu đề và các phần tử form */
+  #userForm input,
+  #userForm select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  /* Nút submit */
+  #userForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  #userForm button:hover {
+    background-color: #45a049;
+  }
+
+  /* Placeholder color */
+  input::placeholder {
+    color: #aaa;
+  }
+
+  /* Thêm chút khoảng cách cho phần tử select */
+  #userForm select {
+    margin-top: 5px;
+  }
+
+  /* Đặt giữa màn hình cho form */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+
+  /* Tiêu đề */
+  #userForm h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+  }
+</style>
+
+<form id="userForm">
+  {% csrf_token %}
+  <h2>Thông tin người dùng</h2>
+  <input type="text" name="name" placeholder="Name" required />
+  <input type="text" name="phone_number" placeholder="Phone Number" required />
+  <select name="gender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+  <button type="submit">Submit</button>
+</form>
+<script>
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Kiểm tra nếu cookie bắt đầu bằng tên mà bạn cần
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  const csrftoken = getCookie("csrftoken");
+
+  document
+    .getElementById("userForm")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+      try {
+        const response = await fetch("/add_user", {
+          method: "POST",
+          body: formData,
+          headers: {
+            'X-CSRFToken': csrftoken  // Thêm CSRF token vào header
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert("User added successfully: " + result.message);
+        } else {
+          alert("Error: " + result.message);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while submitting the form. Please try again.");
+      }
+    });
+</script>
