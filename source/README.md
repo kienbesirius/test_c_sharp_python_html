@@ -5,6 +5,7 @@
 ![License](https://img.shields.io/badge/license-MIT-yellow)
 
 ## Project Structure
+```
 source/
 │
 ├── database/
@@ -14,15 +15,16 @@ source/
 │       ├── MariaDBConnector.csproj # C# project file
 │       ├── app.config             # Info server (late)
 │       └── Program.cs             # Main entry point of the application
-│       
-├── mysql.data.9.0.0/      # MySQL Data Library (version 9.0.0) https://www.nuget.org/packages/MySql.Data/
+│
+├── mysql.data.9.0.0/              # MySQL Data Library (version 9.0.0) https://www.nuget.org/packages/MySql.Data/
 │
 ├── templates/                     # HTML and Python template files
 │   └── index.html                 # Example HTML file
-│ 
+│
 ├── index.py                       # Example Python script
 │
 └── README.md                      # Project documentation (this file)
+```
 
 
 ## Features
