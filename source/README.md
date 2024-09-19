@@ -4,7 +4,7 @@
 ![.NET Version](https://img.shields.io/badge/.NET-8.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-yellow)
 
-## Overview
+## Project Structure
 source/
 │
 ├── database/
