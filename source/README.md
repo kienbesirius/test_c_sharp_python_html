@@ -43,6 +43,34 @@ Please first follow the folder structure in the Overview.
 
 Then follow powersell cmd below to construct a C# Project rightly!
 
+### Create folder & files follow the structure
+- 
+### Create DB
+```
+-- test MariaDB -- 
+CREATE DATABASE test_maria_db;
+USE test_maria_db;
+CREATE TABLE Users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(15) NOT NULL,
+    gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+-- Kiểm tra cấu trúc bảng -- 
+DESCRIBE Users;
+-- Thêm bản ghi thử nghiệm --
+INSERT INTO Users (name, phone_number, gender)
+VALUES ('John Doe', '0123456789', 'Male'),
+       ('Jane Doe', '0987654321', 'Female');
+-- Xem dữ liệu đã thêm -- 
+SELECT * FROM Users;
+```
+### Install Python library
+```
+pip install Flask
+```
+
 ### Create new C-Sharp Project
 ```bash
 cd source\database                      
